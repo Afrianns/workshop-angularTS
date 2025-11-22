@@ -16,7 +16,7 @@ export class AddProductComponent {
     private productService: ProductService
   ) {}
 
-  form = this.fb.group<Partial<Product>>({
+  form = this.fb.group({
     id: this.productService.products.length + 1,
     brand: this.fb.control('', Validators.required),
     price: this.fb.control(0, [Validators.required, Validators.min(0)]),
@@ -27,6 +27,7 @@ export class AddProductComponent {
 
   submit() {
     this.submiting = true;
+    
     const newProduct: Product = {
       id: this.form.value.id!,
       brand: this.form.value.brand!,
