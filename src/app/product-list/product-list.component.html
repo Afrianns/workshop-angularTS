@@ -1,0 +1,38 @@
+<div>
+  <h2>Product List</h2>
+  <p><a routerLink="/add-product">Add Product</a></p>
+
+  <div *ngIf="loading">Loading....</div>
+  <div *ngIf="error" class="text-danger">{{ error }}</div>
+
+  <table
+    *ngIf="!loading && productService.products.length"
+    border="1"
+    cellPadding="8"
+  >
+    <thead>
+      <tr>
+        <td>ID</td>
+        <td>Brand</td>
+        <td>Deskripsi</td>
+        <td>Price</td>
+        <td>Actions</td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let product of productService.products">
+        <td>{{ product.id }}</td>
+        <td>{{ product.brand }}</td>
+        <td>{{ product.description }}</td>
+        <td>{{ product.price }}</td>
+        <td>
+          <button (click)="deleteProduct(product.id)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div *ngIf="!loading && productService.products.length === 0">
+    data not found...
+  </div>
+</div>
