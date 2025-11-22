@@ -1,10 +1,12 @@
+import { FormControl } from '@angular/forms';
+
 export interface Product {
-    id?: any;
-    brand: any;
-    price: any;
-    description: any;
+  id: number;
+  brand: Partial<FormControl<string | null>>;
+  price: Partial<FormControl<number | null>>;
+  description: Partial<FormControl<string | null>>;
 }
 
 export interface ProductResponse {
-    products: Product[];
+  products: Product[];
 }

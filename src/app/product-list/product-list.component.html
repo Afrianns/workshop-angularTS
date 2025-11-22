@@ -1,14 +1,15 @@
-<div>
-  <h2>Product List</h2>
-  <p><a routerLink="/add-product">Add Product</a></p>
+<div class="container">
+  <h2 class="title">Product List</h2>
+  <p class="add-wrapper"><a routerLink="/add-product">Add Product</a></p>
 
-  <div *ngIf="loading">Loading....</div>
+  <div class="loading" *ngIf="loading">Loading....</div>
   <div *ngIf="error" class="text-danger">{{ error }}</div>
 
   <table
     *ngIf="!loading && productService.products.length"
     border="1"
     cellPadding="8"
+    class="bg-red-500"
   >
     <thead>
       <tr>
@@ -25,8 +26,9 @@
         <td>{{ product.brand }}</td>
         <td>{{ product.description }}</td>
         <td>{{ product.price }}</td>
-        <td>
+        <td class="actions">
           <button (click)="deleteProduct(product.id)">Delete</button>
+          <button (click)="updateProduct(product.id)">Update</button>
         </td>
       </tr>
     </tbody>

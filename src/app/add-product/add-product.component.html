@@ -1,26 +1,34 @@
-<h2>Tambah Product</h2>
-<form [formGroup]="form" (ngSubmit)="submit()">
+<div class="container">
+  <h2 class="title">Tambah Product</h2>
+  <form [formGroup]="form" (ngSubmit)="submit()">
     <div class="mb-3">
-        <label>Brand</label>
-        <input type="text" formControlName="brand" class="form-control"/>
-        <div *ngif="form.get('brand')?.invalid && form.get('brand')?.touched" class="text-danger">
-            Brand is required
-        </div>
+      <label>Brand</label>
+      <input type="text" formControlName="brand" class="form-control" />
+      <div
+        *ngif="form.get('brand')?.invalid && form.get('brand')?.touched"
+        class="text-danger"
+      >
+        Brand is required
+      </div>
     </div>
 
     <div class="mb-3">
-        <label>Description</label>
-        <textarea formControlName="description"></textarea>
+      <label>Description</label>
+      <textarea formControlName="description" class="textarea"></textarea>
     </div>
 
     <div class="mb-3">
-        <label>Price</label>
-        <input type="number" formControlName="price" />
-        <div *ngif="form.get('price')?.invalid && form.get('price')?.touched" class="text-danger">
-            Price is required and must be a positive number
-        </div>
-    </div> 
+      <label>Price</label>
+      <input type="number" formControlName="price" class="input" />
+      <div
+        *ngif="form.get('price')?.invalid && form.get('price')?.touched"
+        class="text-danger"
+      >
+        Price is required and must be a positive number
+      </div>
+    </div>
 
-    <button type="submit" [disabled]="submiting">Simpan</button>
-    <a routerLink="/products">Batal</a>
-</form>
+    <button type="submit" [disabled]="submiting" class="btn">Simpan</button>
+    <a routerLink="/products" class="link">Batal</a>
+  </form>
+</div>

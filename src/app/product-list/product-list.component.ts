@@ -8,14 +8,13 @@ import { Product } from '../models/product';
   styleUrls: ['./product-list.component.css'],
 })
 export class ProductListComponent implements OnInit {
-
   loading = false;
   error = '';
 
-  constructor(private productService: ProductService) {}
+  constructor(public productService: ProductService) {}
 
   ngOnInit(): void {
-    this.load();
+    if (this.productService.products.length === 0) this.load();
   }
 
   load() {
@@ -23,6 +22,7 @@ export class ProductListComponent implements OnInit {
     this.productService.getAll().subscribe({
       next: (res) => {
         this.productService.products = res.products;
+        this.productService.saveLocalStorage();
         this.loading = false;
       },
       error: (err) => {
@@ -38,13 +38,20 @@ export class ProductListComponent implements OnInit {
 
   deleteProduct(id: number) {
     if (!id) return;
-    this.productService.delete(id).subscribe({
-      next: (res) => {
-        this.productService.products = this.productService.products.filter((a) => a.id !== id);
-      },
-      error: (err) => {
-        this.error = err.message;
-      },
-    });
+    // this.productService.delete(id).subscribe({
+    //   next: (res) => {
+    this.productService.products = this.productService.products.filter(
+      (a) => a.id !== id
+    );
+    this.productService.saveLocalStorage();
+    // },
+    //   error: (err) => {
+    //     this.error = err.message;
+    //   },
+    // });
+  }
+
+  updateProduct(id: number) {
+    console.log(id);
   }
 }
