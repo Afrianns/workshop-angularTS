@@ -98,12 +98,11 @@ div.text-danger {
   max-width: 90%;
   box-shadow: 0 8px 30px rgba(0,0,0,0.25);
   animation: popup 0.25s ease;
-  box-sizing: border-box;     /* <--- FIXES overflow */
+  box-sizing: border-box;
 }
 
-/* Ensure form elements obey width & padding */
 .modal-content * {
-  box-sizing: border-box;     /* <--- FIXES right-side overlap */
+  box-sizing: border-box;   
 }
 
 /* Animation */
@@ -132,7 +131,7 @@ div.text-danger {
 
 .modal-content input,
 .modal-content textarea {
-  width: 100%;                /* <--- ensures no overflow */
+  width: 100%;               
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 6px;
@@ -156,12 +155,12 @@ div.text-danger {
 }
 
 .modal-content button:first-of-type {
-  background: #2563eb; /* blue */
+  background: #2563eb; 
   color: white;
   margin-right: 8px;
 }
 
 .modal-content button:last-of-type {
-  background: #e11d48; /* red */
+  background: #e11d48;
   color: white;
 }
