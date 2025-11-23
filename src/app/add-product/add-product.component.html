@@ -1,5 +1,5 @@
 <div class="container">
-  <h2 class="title">Tambah Product</h2>
+  <h2 class="title">Add New Product</h2>
   <form [formGroup]="form" (ngSubmit)="submit()">
     <div class="mb-3">
       <label>Brand</label>
@@ -39,6 +39,5 @@
     <button type="submit" [disabled]="submiting" class="btn-blue">
       Simpan
     </button>
-    <a routerLink="/products" class="link">Batal</a>
   </form>
 </div>

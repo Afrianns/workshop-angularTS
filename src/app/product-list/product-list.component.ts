@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../product.service';
 import { Product } from '../models/product';
+import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-product-list',
@@ -12,9 +13,15 @@ export class ProductListComponent implements OnInit {
   error = '';
 
   showEditModal = false;
-  editProduct: Product = { id: 0, brand: '', description: '', price: 0 };
 
-  constructor(public productService: ProductService) {}
+  constructor(public productService: ProductService, private fb: FormBuilder) {}
+
+  editProduct: Product = { id: 0, price: 0, brand: '', description: '' };
+  editForm = this.fb.group({
+    brand: this.fb.control('', Validators.required),
+    price: this.fb.control(0, [Validators.required, Validators.min(0)]),
+    description: this.fb.control('', Validators.required),
+  });
 
   ngOnInit(): void {
     if (this.productService.products.length === 0) this.load();
@@ -59,10 +66,19 @@ export class ProductListComponent implements OnInit {
     if (!prod) return;
 
     this.editProduct = { ...prod }; // clone to avoid instant binding
+    this.editForm.patchValue({
+      brand: prod.brand,
+      price: prod.price,
+      description: prod.description,
+    });
     this.showEditModal = true;
   }
 
   saveUpdate() {
+    if (this.editForm.invalid) {
+      this.editForm.markAllAsTouched();
+      return;
+    }
     const index = this.productService.products.findIndex(
       (p) => p.id === this.editProduct.id
     );

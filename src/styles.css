@@ -9,6 +9,12 @@ body {
   margin: auto;
 }
 
+.text-danger {
+  color: red;
+  font-size: 13px;
+  margin-top: 4px;
+}
+
 /* Buttons */
 button {
   padding: 6px 12px;

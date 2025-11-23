@@ -1,7 +1,7 @@
 <h1 class="title">Product List</h1>
 
 <button (click)="load()" class="btn-gray">Load Dummy Data</button>
-<div class="loading spacing" *ngIf="loading">
+<div class="spacing" *ngIf="loading">
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="50"
@@ -60,27 +60,47 @@
   </tbody>
 </table>
 
-<div *ngIf="!loading && productService.products.length === 0">
-  data not found...
+<div class="spacing" *ngIf="!loading && productService.products.length === 0">
+  <i> data not found... </i>
 </div>
 <!-- UPDATE MODAL -->
 <div class="modal" *ngIf="showEditModal">
   <div class="modal-content">
     <h2>Edit Product</h2>
 
-    <label>Brand</label>
-    <input [(ngModel)]="editProduct.brand" type="text" />
+    <form [formGroup]="editForm">
+      <label>Brand</label>
+      <input type="text" formControlName="brand" />
+      <div
+        *ngIf="editForm.get('brand')?.invalid && editForm.get('brand')?.touched"
+        class="text-danger"
+      >
+        Brand is required
+      </div>
 
-    <label>Description</label>
-    <textarea [(ngModel)]="editProduct.description" class="textarea"></textarea>
-    <!-- <input  type="text" /> -->
+      <label>Price</label>
+      <input type="number" formControlName="price" />
+      <div
+        *ngIf="editForm.get('price')?.invalid && editForm.get('price')?.touched"
+        class="text-danger"
+      >
+        Price must be positive
+      </div>
 
-    <label>Price</label>
-    <input [(ngModel)]="editProduct.price" type="number" />
+      <label>Description</label>
+      <textarea formControlName="description"></textarea>
+      <div
+        *ngIf="
+          editForm.get('description')?.invalid &&
+          editForm.get('description')?.touched
+        "
+        class="text-danger"
+      >
+        Description is required
+      </div>
 
-    <div class="modal-actions">
-      <button (click)="saveUpdate()">Save</button>
-      <button (click)="closeModal()">Cancel</button>
-    </div>
+      <button type="button" (click)="saveUpdate()">Save</button>
+      <button type="button" (click)="showEditModal = false">Cancel</button>
+    </form>
   </div>
 </div>
