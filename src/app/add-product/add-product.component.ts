@@ -26,8 +26,12 @@ export class AddProductComponent {
   submiting = false;
 
   submit() {
+    if (this.form.invalid) {
+      this.form.markAllAsTouched(); // show validation errors
+      return;
+    }
     this.submiting = true;
-    
+
     const newProduct: Product = {
       id: this.form.value.id!,
       brand: this.form.value.brand!,

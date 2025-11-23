@@ -1,0 +1,28 @@
+nav {
+  background: #ffffff;
+  padding: 12px 20px;
+  border-radius: 8px;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  font-family: sans-serif;
+  border: 1px solid rgb(217, 217, 217);
+}
+
+nav a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+  padding: 6px 10px;
+  border-radius: 6px;
+  transition: 0.2s ease;
+}
+
+nav a:hover {
+  background: #e2e2e2;
+}
+
+nav a.active {
+  text-decoration: underline;
+  font-weight: bolder;
+}

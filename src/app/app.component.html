@@ -1,5 +1,14 @@
-<nav>
-  <a routerLink="/">Home</a> |
-  <a routerLink="/products">Product List</a>
-</nav>
-<router-outlet></router-outlet>
+<div class="container">
+  <nav>
+    <a
+      routerLink="/"
+      routerLinkActive="active"
+      [routerLinkActiveOptions]="{ exact: true }"
+      >Home</a
+    >
+    | <a routerLink="/products" routerLinkActive="active">Product List</a> |
+    <a routerLink="/add-product" routerLinkActive="active">Add Product</a>
+  </nav>
+
+  <router-outlet></router-outlet>
+</div>

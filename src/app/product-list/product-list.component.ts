@@ -11,6 +11,9 @@ export class ProductListComponent implements OnInit {
   loading = false;
   error = '';
 
+  showEditModal = false;
+  editProduct: Product = { id: 0, brand: '', description: '', price: 0 };
+
   constructor(public productService: ProductService) {}
 
   ngOnInit(): void {
@@ -52,6 +55,25 @@ export class ProductListComponent implements OnInit {
   }
 
   updateProduct(id: number) {
-    console.log(id);
+    const prod = this.productService.products.find((p) => p.id === id);
+    if (!prod) return;
+
+    this.editProduct = { ...prod }; // clone to avoid instant binding
+    this.showEditModal = true;
+  }
+
+  saveUpdate() {
+    const index = this.productService.products.findIndex(
+      (p) => p.id === this.editProduct.id
+    );
+    if (index !== -1) {
+      this.productService.products[index] = { ...this.editProduct };
+      this.productService.saveLocalStorage();
+    }
+    this.showEditModal = false;
+  }
+
+  closeModal() {
+    this.showEditModal = false;
   }
 }

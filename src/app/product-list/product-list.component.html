@@ -1,40 +1,86 @@
-<div class="container">
-  <h2 class="title">Product List</h2>
-  <p class="add-wrapper"><a routerLink="/add-product">Add Product</a></p>
+<h1 class="title">Product List</h1>
 
-  <div class="loading" *ngIf="loading">Loading....</div>
-  <div *ngIf="error" class="text-danger">{{ error }}</div>
-
-  <table
-    *ngIf="!loading && productService.products.length"
-    border="1"
-    cellPadding="8"
-    class="bg-red-500"
+<button (click)="load()" class="btn-gray">Load Dummy Data</button>
+<div class="loading spacing" *ngIf="loading">
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="50"
+    height="50"
+    viewBox="0 0 24 24"
   >
-    <thead>
-      <tr>
-        <td>ID</td>
-        <td>Brand</td>
-        <td>Deskripsi</td>
-        <td>Price</td>
-        <td>Actions</td>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let product of productService.products">
-        <td>{{ product.id }}</td>
-        <td>{{ product.brand }}</td>
-        <td>{{ product.description }}</td>
-        <td>{{ product.price }}</td>
-        <td class="actions">
-          <button (click)="deleteProduct(product.id)">Delete</button>
-          <button (click)="updateProduct(product.id)">Update</button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+    <path
+      fill="#111"
+      d="M12 2A10 10 0 1 0 22 12A10 10 0 0 0 12 2Zm0 18a8 8 0 1 1 8-8A8 8 0 0 1 12 20Z"
+      opacity="0.5"
+    />
+    <path fill="#555" d="M20 12h2A10 10 0 0 0 12 2V4A8 8 0 0 1 20 12Z">
+      <animateTransform
+        attributeName="transform"
+        dur="1s"
+        from="0 12 12"
+        repeatCount="indefinite"
+        to="360 12 12"
+        type="rotate"
+      />
+    </path>
+  </svg>
+</div>
+<div *ngIf="error" class="text-danger">{{ error }}</div>
 
-  <div *ngIf="!loading && productService.products.length === 0">
-    data not found...
+<table
+  *ngIf="!loading && productService.products.length"
+  border="1"
+  cellPadding="8"
+  class="bg-red-500"
+>
+  <thead>
+    <tr>
+      <td>ID</td>
+      <td>Brand</td>
+      <td>Deskripsi</td>
+      <td>Price</td>
+      <td>Actions</td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let product of productService.products">
+      <td>{{ product.id }}</td>
+      <td>{{ product.brand }}</td>
+      <td>{{ product.description }}</td>
+      <td>{{ product.price }}</td>
+      <td class="actions">
+        <button class="btn-red" (click)="deleteProduct(product.id)">
+          Delete
+        </button>
+        <button class="btn-blue" (click)="updateProduct(product.id)">
+          Update
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<div *ngIf="!loading && productService.products.length === 0">
+  data not found...
+</div>
+<!-- UPDATE MODAL -->
+<div class="modal" *ngIf="showEditModal">
+  <div class="modal-content">
+    <h2>Edit Product</h2>
+
+    <label>Brand</label>
+    <input [(ngModel)]="editProduct.brand" type="text" />
+
+    <label>Description</label>
+    <textarea [(ngModel)]="editProduct.description" class="textarea"></textarea>
+    <!-- <input  type="text" /> -->
+
+    <label>Price</label>
+    <input [(ngModel)]="editProduct.price" type="number" />
+
+    <div class="modal-actions">
+      <button (click)="saveUpdate()">Save</button>
+      <button (click)="closeModal()">Cancel</button>
+    </div>
   </div>
 </div>

@@ -52,35 +52,11 @@ a {
 }
 
 a:hover {
-  text-decoration: none ;
+  text-decoration: none;
 }
 
-/* Buttons */
-button {
-  padding: 6px 12px;
-  margin-right: 6px;
-  font-size: 14px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-button:nth-child(1) {
-  background-color: #e74c3c;
-  color: white;
-}
-
-button:nth-child(1):hover {
-  background-color: #c0392b;
-}
-
-button:nth-child(2) {
-  background-color: #3498db;
-  color: white;
-}
-
-button:nth-child(2):hover {
-  background-color: #2980b9;
+textarea {
+  resize: vertical;
 }
 
 /* "data not found" text */
@@ -90,28 +66,46 @@ div.text-danger {
   font-size: 14px;
 }
 
-/* Center the title */
-.title {
-  text-align: center;
-  font-family: "Roboto", sans-serif;
-  font-size: 28px;
-  margin-bottom: 10px;
-}
-
-/* Center the button wrapper
-.add-wrapper {
-  padding: 1rem 3rem;
-  background-color: #007bff;
-  width: fit-content;
-  text-align: right;
-  border-radius: 5px;
-  margin-bottom: 20px;
-} */
-
 .add-btn:hover {
   background-color: #0056b3;
 }
 
 .loading {
   text-align: center;
+}
+
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-content {
+  background: white;
+  padding: 20px;
+  width: 350px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.modal-content input {
+  padding: 6px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+
+.spacing{
+  margin: 5rem 0;
 }
